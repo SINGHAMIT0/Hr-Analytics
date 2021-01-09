@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>HR Analytics</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/5f3f547070.js" crossorigin="anonymous"></script>
+  <style>
+  body {
+    font: 20px Montserrat, sans-serif;
+    line-height: 1.8;
+    color: #f5f6f7;
+  }
+  p {font-size: 16px;}
+  .margin {margin-bottom: 45px;}
+  .bg-1 { 
+    background-color:rgb(149, 151, 12); /*  */
+    color: black;
+    text-align: left;
+
+  }
+  .bg-2 { 
+    background-color: #020202; /* Dark Blue */
+    color: #ffffff;
+  }
+  .bg-3 { 
+    background-color: #ffffff; /* White */
+    color: #555555;
+  }
+  .bg-4 { 
+    background-color: #2f2f2f; /* Black Gray */
+    color: #fff;
+  }
+  .container-fluid {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  .navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    letter-spacing: 5px;
+  }
+  .navbar-nav  li a:hover {
+    color: #1abc9c !important;
+  }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-default bg-4">
+  <div class="container">
+    <div class="navbar-header">
+      
+      <h2>HR Analytics</h2>
+    </div>
+    
+  </div>
+</nav>
+
+<!-- First Container -->
+<div class="container-fluid bg-1 text-center">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><p>This intelligent system is able to check whether an employee will stay or leave organisation</p></div>
+    <div class="col-md-2"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+  <form action="{{ url_for('predict')}}"method="post">
+
+
+    <div class="form-group">
+      <label for="Age">Enter Age of the employee</label>
+      <br>
+      <input type="text" class="form-control"  name="Age" id="Age" placeholder="Age ex: 1985" required="required">
+    </div>
+
+
+
+    <div class="form-group">
+      <label for="BusinessTravel">Business Travel frequency in job </label>
+      <br>
+      <select  class="input100" id="BusinessTravel" name="BusinessTravel" style="padding: 10px 5px;margin-top: 15px;border: 2px solid #d9d9d9;" >
+        <option value="">Select BusinessTravel</option>
+        <option value="0">Travel_Rarely</option>
+        <option value="1">Travel_Frequently</option>
+        <option value="2">Non-Travel</option>
+      </select>
+    </div>
+
+
+    <div class="form-group">
+      <label for="Department">Select department of employee </label>
+      <br>
+      <select  class="input100" id="Department" name="Department" style="padding: 10px 5px;margin-top: 15px;border: 2px solid #d9d9d9;" >
+        <option value="">Select Department</option>
+        <option value="0">Human Resources</option>
+        <option value="1">Research & Development</option>
+        <option value="2">Sales</option>
+      </select>
+    </div>
+
+
+    <div class="form-group">
+      <label for="DistanceFromHome">Distance From Home</label>
+      <br>
+      <input type="text" class="form-control"  name="DistanceFromHome" id="DistanceFromHome" placeholder=" ex: 5 km" required="required">
+    </div>
+
+    <div class="form-group">
+      <label for="Education">Select level of education of employee</label>
+      <br>
+      <select  class="input100" id="Education" name="Education" style="padding: 10px 5px;margin-top: 15px;border: 2px solid #d9d9d9;" >
+        <option value="">Select Education</option>
+        <option value="0">1</option>
+        <option value="1">2</option>
+        <option value="2">3</option>
+        <option value="3">4</option>
+        <option value="4">5</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+      <label for="EducationField">Select field of education of employee</label>
+      <br>
+      <select  class="input100" id="EducationField" name="EducationField" style="padding: 10px 5px;margin-top: 15px;border: 2px solid #d9d9d9;" >
+        <option value="">Select field of Education</option>
+        <option value="0">Human Resources</option>
+        <option value="1">Life Sciences</option>
+        <option value="2">Marketing</option>
+        <option value="3">Medical</option>
+        <option value="4">Other</option>
+        <option value="5">Technical Degree</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+      <label for="Gender">Select Gender of employee</label>
+      <br>
+      <select  class="input100" id="Gender" name="Gender" style="padding: 10px 5px;margin-top: 15px;border: 2px solid #d9d9d9;" >
+        <option value="">Select Gender</option>
+        <option value="0">Female</option>
+        <option value="1">Male</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+      <label for="Education">Select JobLevel</label>
+      <br>
+      <select  class="input100" id="JobLevel" name="JobLevel" style="padding: 10px 5px;margin-top: 15px;border: 2px solid #d9d9d9;" >
+        <option value="">Select JobLevel</option>
+        <option value="0">1</option>
+        <option value="1">2</option>
+        <option value="2">3</option>
+        <option value="3">4</option>
+        <option value="4">5</option>
+        </select>
+    </div>
+
+
+    <div class="form-group">
+      <label for="JobRole">Select JobRole</label>
+      <br>
+      <select  class="input100" id="JobRole" name="JobRole" style="padding: 10px 5px;margin-top: 15px;border: 2px solid #d9d9d9;" >
+        <option value="">Select JobRole</option>
+        <option value="0">Healthcare Representative</option>
+        <option value="1">Human Resources</option>
+        <option value="2">Laboratory Technician</option>
+        <option value="3">Manager</option>
+        <option value="4">Manufacturing Director</option>
+        <option value="5">Research Director</option>
+        <option value="6">Research Scientist</option>
+        <option value="7">Sales Executive</option>
+        <option value="8">Sales Representative</option>
+        </select>
+    </div>
+
+
+    <div class="form-group">
+      <label for="MaritalStatus">Select Marital Status</label>
+      <br>
+      <select  class="input100" id="MaritalStatus" name="MaritalStatus" style="padding: 10px 5px;margin-top: 15px;border: 2px solid #d9d9d9;" >
+        <option value="">Select MaritalStatus</option>
+        <option value="0">Divorced</option>
+        <option value="1">Married</option>
+        <option value="2">Single</option>
+        </select>
+    </div>
+
+
+    <div class="form-group">
+      <label for="MonthlyIncome">Enter monthly income</label>
+      <br>
+      <input class="input100" type="text" id="MonthlyIncome" name="MonthlyIncome" placeholder=" eg: 15000" required="required">
+    </div>
+
+
+    
+    <div class="form-group">
+      <label for="NumCompaniesWorked">Enter number of companies worked with</label>
+      <br>
+      <input class="input100" type="text" id="NumCompaniesWorked" name="NumCompaniesWorked" placeholder=" eg: 3" required="required">
+    </div>
+
+
+
+    <div class="form-group">
+      <label for="PercentSalaryHike">Enter number of percent salary hike</label>
+      <br>
+      <input class="input100" type="text" id="PercentSalaryHike" name="PercentSalaryHike" placeholder=" eg: 10 %" required="required">
+    </div>
+
+
+     
+    <div class="form-group">
+    <label for="StockOptionLevel">Whether Stock Option level provided</label>
+    <br>
+    <select  class="input100" id="StockOptionLevel" name="StockOptionLevel" style="padding: 10px 5px;margin-top: 15px;border: 2px solid #d9d9d9;" >
+      <option value="">StockOptionLevel</option>
+      <option value="0">1</option>
+      <option value="1">2</option>
+      <option value="2">3</option>
+      <option value="3">4</option>
+      </select>
+  </div>
+
+
+  <div class="form-group">
+    <label for="TotalWorkingYears">Enter Total working experience </label>
+    <br>
+    <input class="input100" type="text" id="TotalWorkingYears" name="TotalWorkingYears" placeholder=" eg: 2.5 years" required="required">
+  </div>
+
+
+  <div class="form-group">
+    <label for="TrainingTimesLastYear">Enter Time since last training </label>
+    <br>
+    <input class="input100" type="text" id="TrainingTimesLastYear" name="TrainingTimesLastYear" placeholder=" eg: 1 years" required="required">
+  </div>
+
+
+  <div class="form-group">
+    <label for="YearsAtCompany">Enter time in company </label>
+    <br>
+    <input class="input100" type="text" id="YearsAtCompany" name="YearsAtCompany" placeholder="  eg: 5 years" required="required">
+  </div>
+
+
+  <div class="form-group">
+    <label for="YearsSinceLastPromotion">Enter Time since last promotion </label>
+    <br>
+    <input class="input100" type="text" id="YearsSinceLastPromotion" name="YearsSinceLastPromotion" placeholder=" eg: 2 years" required="required">
+  </div>
+
+
+  <div class="form-group">
+    <label for="YearsWithCurrManager">Enter Time with current manager </label>
+    <br>
+    <input class="input100" type="text" id="YearsWithCurrManager" name="YearsWithCurrManager" placeholder=" eg: 1 years" required="required">
+  </div>
+ <br>
+
+
+
+    <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+    <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+  </form>
+  <br>
+
+  <h1>{{ prediction_text }} </h1>
+</div>
+<div class="col-md-4"></div>
+</div>
+</div>
+
+
+<!-- Footer -->
+<footer class="container-fluid bg-4 text-center">
+  <p>Thanks to <a href="https://www.boardinfinity.com">BoardInfinity</a></p>
+  <p class='footer-description'>Made with ❤️ by Amit Singh.</p>
+  <div class="contact" >
+    <a target="_blank" href=""><i class="fab fa-github fa-lg contact-icon" style="color:blanchedalmond !important"></i></a>
+    <a target="_blank" href=""><i class="fab fa-linkedin fa-lg contact-icon" style="color:blanchedalmond !important"></i></a>
+</div>
+   
+  
+</footer>
+
+
+
+</body>
+</html>
